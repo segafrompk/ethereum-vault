@@ -1,0 +1,17 @@
+@import '~react-toastify/dist/ReactToastify.min.css';
+
+@import './variables';
+
+@import './views/account';
+@import './views/login';
+
+@import './components/addressList';
+@import './components/balance';
+@import './components/makeTransaction';
+@import './components/transactionHistory';
+
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
@@ -10,6 +9,7 @@ import { checkBalanceMiddleware } from './middleware/checkBalanceMiddleware';
 import { checkTransactionHistoryMiddleware } from './middleware/checkTransactionHistoryMiddleware';
 import { sendTransactionMiddleware } from './middleware/sendTransactionMiddleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import './assets/style/style.scss';
 
 const middleware = applyMiddleware(
     checkBalanceMiddleware,
