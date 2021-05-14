@@ -45,11 +45,13 @@ const MakeTransaction = ({ wallet }) => {
                     fieldValue: '',
                 })
             );
+        } else if (!ethers.utils.isAddress(depositToAddressValue)) {
+            notifyError('Not a valid ethereum wallet address');
         } else if (isNaN(depositAmmountValue)) {
             notifyError('Entered ammount is not a number!');
-        } else if (depositAmmountValue < balance) {
+        } else if (depositAmmountValue > balance) {
             notifyError("You don't have enouth ETH");
-        } else if (depositAmmountValue > 0) {
+        } else if (depositAmmountValue < 0) {
             notifyError('Ammount of ETH must be positive');
         }
     };
