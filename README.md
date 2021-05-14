@@ -1,3 +1,8 @@
+This is a simple Ethereum vault app. It enables it's user to log into a wallet with a wallet `private key`.
+Once logged in, it shows you your EHT ballance, let's you create list of addresses, make an ETH deposit to address of your choosing. _You can click on saved address to add it to deposit address field._ You can also see wallets transaction history.
+
+To change Ethereum network or add EtherScan api key, edit .env file.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
