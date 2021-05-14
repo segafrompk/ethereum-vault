@@ -13,7 +13,7 @@ const TransactionHistoryList = ({ historyData = [] }) => {
             .reverse();
     }
 
-    return <div>{listItems}</div>;
+    return <div className='transaction-history-list'>{listItems}</div>;
 };
 
 export default TransactionHistoryList;

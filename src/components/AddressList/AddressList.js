@@ -17,9 +17,11 @@ const AddressList = () => {
         });
     }
     return (
-        <div>
-            <div>{addressList.length > 0 && addressList}</div>
+        <div className='address-list-container'>
             <AddressSave savedAddresses={savedAddresses} />
+            <div className='address-list'>
+                {addressList.length > 0 && addressList}
+            </div>
         </div>
     );
 };

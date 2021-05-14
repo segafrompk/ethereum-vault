@@ -4,3 +4,9 @@ export const loginAction = (privateKey = '') => {
         payload: privateKey,
     };
 };
+
+export const logoutAction = () => {
+    return {
+        type: 'LOGOUT',
+    };
+};

@@ -3,9 +3,10 @@ import { loginAction } from '../store/actions/loginAction';
 import { notifyError } from '../helpers/toasts';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import { updateInputFieldsExternalAction } from '../store/actions/updateInputFieldsAction';
 
 const Login = () => {
-    const login = useDispatch();
+    const callAction = useDispatch();
     const inputPersonalKey = useSelector(
         (state) => state.updateInputFieldReducer.personalKeyInput
     );
@@ -23,7 +24,13 @@ const Login = () => {
 
         if (validKey) {
             window.localStorage.setItem('ethereumPersonalKey', key);
-            login(loginAction(key));
+            callAction(loginAction(key));
+            callAction(
+                updateInputFieldsExternalAction({
+                    fieldToUpdate: 'personalKeyInput',
+                    fieldValue: '',
+                })
+            );
         } else {
             notifyError('Personal key is not valid!');
         }
@@ -31,15 +38,18 @@ const Login = () => {
 
     const storedKey = window.localStorage.getItem('ethereumPersonalKey');
     if (storedKey) {
-        login(loginAction(storedKey));
+        callAction(loginAction(storedKey));
         return <div>You are being logged in!</div>;
     } else {
         return (
-            <div>
+            <div className='login-view'>
+                <label htmlFor='personalKeyInput'>
+                    Please insert your wallet`s personal key
+                </label>
                 <Input
                     name='personalKeyInput'
                     customClass='personal-key-input'
-                    placeholder='Please insert your wallet`s personal key (don`t forget "0x" at the start!)'
+                    placeholder='Personal key'
                 />
                 <Button
                     buttonAction={() => loginToWallet(inputPersonalKey)}

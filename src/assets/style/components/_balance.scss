@@ -1,0 +1,42 @@
+.display-balance {
+    background-image: linear-gradient(
+        -51deg,
+        $primaryColor,
+        lighten($primaryColor, 13%)
+    );
+    box-shadow: 5px 10px 25px -9px #888888;
+    border-radius: 20px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    .qr-address-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        span {
+            font-weight: 400;
+        }
+    }
+    .balance-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .display-balance {
+        padding: 30px;
+        position: relative;
+        margin-bottom: 50px;
+        &::after {
+            position: absolute;
+            bottom: -40px;
+            content: '';
+            width: 80%;
+            border-bottom: 2px solid $primaryColor;
+        }
+    }
+}

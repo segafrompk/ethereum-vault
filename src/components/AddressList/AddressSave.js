@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { saveAddressAction } from '../../store/actions/saveAddressAction';
 import { notifyError, notifySuccess } from '../../helpers/toasts';
+import { updateInputFieldsExternalAction } from '../../store/actions/updateInputFieldsAction';
 import Input from '../Input';
 import Button from '../Button';
 import { ethers } from 'ethers';
@@ -33,6 +34,18 @@ const AddressSave = ({ savedAddresses }) => {
                         address: enteredAddress,
                     })
                 );
+                saveEntered(
+                    updateInputFieldsExternalAction({
+                        fieldToUpdate: 'addContactName',
+                        fieldValue: '',
+                    })
+                );
+                saveEntered(
+                    updateInputFieldsExternalAction({
+                        fieldToUpdate: 'addContactAddress',
+                        fieldValue: '',
+                    })
+                );
                 notifySuccess('Address successfully saved');
             } else {
                 notifyError('Entered address was already saved!');
@@ -43,21 +56,27 @@ const AddressSave = ({ savedAddresses }) => {
     };
 
     return (
-        <div>
+        <div className='add-address'>
+            <label htmlFor='addContactName'>
+                Enter name for address you want to save!
+            </label>
             <Input
                 name='addContactName'
                 customClass='add-contact-name'
-                placeholder='Enter name for address you want to save!'
+                placeholder='Name'
             />
-
+            <label htmlFor='addContactAddress'>
+                Enter address you want to save!
+            </label>
             <Input
                 name='addContactAddress'
                 customClass='add-contact-address'
-                placeholder='Enter address you want to save!'
+                placeholder='Ethereum wallet address'
             />
             <Button
                 buttonAction={saveEnteredAddress}
                 buttonText='Save address!'
+                customClass='save-address-button'
             />
         </div>
     );

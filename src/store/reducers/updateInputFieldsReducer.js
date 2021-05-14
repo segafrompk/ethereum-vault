@@ -13,6 +13,11 @@ const updateInputFieldReducer = (state = DEFAULT_STATE, action) => {
                 ...state,
                 [action.payload.target.name]: action.payload.target.value,
             });
+        case 'UPDATE_INPUT_EXTERNAL':
+            return (state = {
+                ...state,
+                [action.payload.fieldToUpdate]: action.payload.fieldValue,
+            });
         default:
             return state;
     }

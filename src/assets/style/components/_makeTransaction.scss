@@ -1,0 +1,28 @@
+.make-transaction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    label {
+        margin-bottom: 0.5rem;
+    }
+    input {
+        font-size: 1rem;
+        width: 50%;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .make-transaction {
+        position: relative;
+        margin-bottom: 40px;
+        &::after {
+            position: absolute;
+            bottom: -40px;
+            content: '';
+            width: 80%;
+            border-bottom: 2px solid $primaryColor;
+        }
+    }
+}

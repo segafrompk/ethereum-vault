@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { ethers } from 'ethers';
+import { ethers, Wallet } from 'ethers';
 import { sendTransactionAction } from '../../store/actions/sendTransactionAction';
 import Input from '../Input';
 import Button from '../Button';
+import { updateInputFieldsExternalAction } from '../../store/actions/updateInputFieldsAction';
+import PropTypes from 'prop-types';
 
 const MakeTransaction = ({ wallet }) => {
     const callAction = useDispatch();
@@ -30,23 +32,53 @@ const MakeTransaction = ({ wallet }) => {
                     ),
                 })
             );
+            callAction(
+                updateInputFieldsExternalAction({
+                    fieldToUpdate: 'depositToAddress',
+                    fieldValue: '',
+                })
+            );
+            callAction(
+                updateInputFieldsExternalAction({
+                    fieldToUpdate: 'depositAmmount',
+                    fieldValue: '',
+                })
+            );
         }
     };
     return (
-        <div>
+        <div className='make-transaction'>
+            <label htmlFor='depositToAddress'>
+                Please enter address you want to send ether to:
+            </label>
             <Input
                 name='depositToAddress'
                 customClass='deposit-to-address'
-                placeholder='Please enter address you want to send ether to'
-            />{' '}
+                placeholder='Ethereum wallet address'
+            />
+            <label htmlFor='depositAmmount'>
+                How much ether do you want to deposit?
+            </label>
             <Input
                 name='depositAmmount'
                 customClass='deposit-amount'
-                placeholder='How much ether do you want to deposit?'
+                placeholder='ETH ammount'
             />
-            <Button buttonText='Deposit!' buttonAction={depositEther} />
+            <Button
+                buttonText='Deposit!'
+                customClass='deposit-button'
+                buttonAction={depositEther}
+            />
         </div>
     );
+};
+
+MakeTransaction.defaultProps = {
+    wallet: {},
+};
+
+MakeTransaction.propTypes = {
+    wallet: PropTypes.instanceOf(Wallet),
 };
 
 export default MakeTransaction;

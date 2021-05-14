@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { checkTransactionHistoryAction } from '../../store/actions/checkTransactionHistoryAction';
 import Button from '../Button';
 import TransactionHistoryList from './TransactionHistoryList';
@@ -16,14 +17,19 @@ const TransactionHistory = ({ address }) => {
 
     const transactionHistory = useSelector((state) => state.transactionHistory);
     return (
-        <div>
+        <div className='transaction-history'>
             <TransactionHistoryList historyData={transactionHistory} />
-            <Button
-                buttonAction={refreshTransactionHistory}
-                buttonText='refresh!'
-            />
+            <Button buttonAction={refreshTransactionHistory} refresh={true} />
         </div>
     );
+};
+
+TransactionHistory.defaultProps = {
+    address: '',
+};
+
+TransactionHistory.propTypes = {
+    address: PropTypes.string,
 };
 
 export default TransactionHistory;

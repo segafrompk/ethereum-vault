@@ -13,7 +13,7 @@ const PersonalKeyInput = ({ name, customClass, placeholder }) => {
     return (
         <input
             name={name}
-            className={customClass}
+            className={customClass + ' input-field'}
             placeholder={placeholder}
             value={inputValue}
             onChange={updateInput}
